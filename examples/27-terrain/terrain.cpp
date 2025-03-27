@@ -72,7 +72,7 @@ ExampleTerrain(const char* _name, const char* _description, const char* _url)
 
 		m_width  = _width;
 		m_height = _height;
-		m_debug  = BGFX_DEBUG_NONE;
+		m_debug  = BGFX_DEBUG_TEXT;
 		m_reset  = BGFX_RESET_VSYNC;
 
 		bgfx::Init init;
@@ -482,6 +482,10 @@ ExampleTerrain(const char* _name, const char* _description, const char* _url)
 				bgfx::submit(0, m_terrainHeightTextureProgram);
 				break;
 			}
+
+			// Print some debug text.
+			bgfx::dbgTextClear();
+			bgfx::dbgTextPrintf(1, 1, 0x0f, "This string keeps changing length: %d", rand() % 2 + 9);
 
 			// Advance to next frame. Rendering thread will be kicked to
 			// process submitted rendering primitives.
